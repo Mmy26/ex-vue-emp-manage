@@ -11,7 +11,7 @@ const routes: Array<RouteConfig> = [
   // },
   {
     path: "/registerAdmin",
-    component: () => import("../components/RegisterAdmin.vue"),
+    component: () => import("../views/RegisterAdmin.vue"),
   },
 ];
 
