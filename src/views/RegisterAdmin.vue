@@ -10,7 +10,7 @@
           </div>
 
           <div class="header-right">
-            <a href="registerAdmin.html">管理者登録</a>
+            <router-link to="registerAdmin.html">管理者登録</router-link>
           </div>
         </div>
       </div>
