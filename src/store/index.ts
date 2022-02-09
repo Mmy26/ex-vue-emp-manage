@@ -14,22 +14,29 @@ export default new Vuex.Store({
     employees: new Array<Employee>(),
   }, // end state
   actions: {
-    // 従業員一覧情報をWebAPIから取得してmutationを呼び出す
+    /**
+     * 従業員一覧情報をWebAPIから取得してmutationを呼び出す.
+     *
+     * @param context - コンテキスト
+     */
     async getEmployeeList(context) {
       const response = await axios.get(
         "http://153.127.48.168:8080/ex-emp-api/employee/employees"
       );
       console.dir("response:" + JSON.stringify(response));
-      // WebAPIの仕様を確認しながら,axiosを使用して、WebAPIを呼ぶ
 
-      // 取得したresponse.dateを変数payloadに代入
       const payload = response.data;
       // contextオブジェクトのcommitメソッドを使用し、データが入っているpayload変数を渡す
       context.commit("addEmployeeList", payload);
     },
   }, // end actions
   mutations: {
-    // 従業員一覧情報を作成してstateに格納する
+    /**
+     * 従業員一覧情報を作成してstateに格納する.
+     *
+     * @param state - ステート
+     * @param payload - WebAPIから取得した従業員情報(JSON)
+     */
     showEmployeeList(state, payload) {
       // payloadの中のtotalCountをstateのtotalCountの代入
       state.totalEmployeeCount = payload.totalEmployeeCount;
@@ -55,15 +62,30 @@ export default new Vuex.Store({
     },
   }, // end mutations
   getters: {
-    // 従業員数を返す
+    /**
+     * 従業員数を返す.
+     *
+     * @param state - ステート
+     * @returns 従業員数
+     */
     getEmployeeCount(state) {
       return state.totalEmployeeCount;
     },
-    // 従業員数を返す
+    /**
+     * 従業員一覧を返す.
+     *
+     * @param state - ステート
+     * @returns 従業員一覧
+     */
     getEmployees(state) {
       return state.employees;
     },
-    // IDから従業員を１件検索し、返す
+    /**
+     * IDから従業員を検索し返す.
+     *
+     * @param state - ステート
+     * @returns 従業員情報
+     */
     getEmployeeById(state) {
       return state.employees[0];
     },
