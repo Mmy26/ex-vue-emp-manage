@@ -13,6 +13,10 @@ const routes: Array<RouteConfig> = [
     path: "/registerAdmin",
     component: () => import("../views/RegisterAdmin.vue"),
   },
+  {
+    path: "/loginAdmin",
+    component: () => import("../views/LoginAdmin.vue"),
+  },
 ];
 
 const router = new VueRouter({
