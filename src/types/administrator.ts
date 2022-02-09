@@ -1,7 +1,7 @@
 /**
  * 管理者情報を表す部品用クラス.
  */
-export class administrator {
+export class Administrator {
   constructor(
     // ID
     private _id: number,

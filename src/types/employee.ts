@@ -1,7 +1,7 @@
 /**
  * 従業員情報を表す部品用クラス.
  */
-export class employee {
+export class Employee {
   constructor(
     // ID
     private _id: number,
