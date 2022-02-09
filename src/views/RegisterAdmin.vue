@@ -88,7 +88,9 @@ export default class ResisterAdmin extends Vue {
   // パスワード
   private password = "";
 
-  // 管理者情報を登録する
+  /**
+   * 管理者情報を登録する.
+   */
   async registerAdmin(): Promise<void> {
     const response = await axios.post(
       "http://153.127.48.168:8080/ex-emp-api/insert",
