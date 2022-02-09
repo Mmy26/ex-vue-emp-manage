@@ -59,8 +59,32 @@
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
+import axios from "axios";
 @Component
-export default class XXXComponent extends Vue {}
+export default class loginAdmin extends Vue {
+  // 登録時のエラーメッセージ
+  private errorMessage = "";
+  // メールアドレス
+  private mailAddress = "";
+  // パスワード
+  private password = "";
+
+  async loginAdmin(): Promise<void> {
+    const response = await axios.post(
+      "http://153.127.48.168:8080/ex-emp-api/insert",
+      {
+        mailAddress: this.mailAddress,
+        password: this.password,
+      }
+    );
+
+    if (response.data.status === "success") {
+      this.$router.push("/employeeList");
+    } else {
+      this.errorMessage = "ログインに失敗しました";
+    }
+  }
+}
 </script>
 
 <style scoped></style>
