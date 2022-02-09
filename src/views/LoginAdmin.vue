@@ -69,9 +69,12 @@ export default class loginAdmin extends Vue {
   // パスワード
   private password = "";
 
+  /**
+   * ログインをする.
+   */
   async loginAdmin(): Promise<void> {
     const response = await axios.post(
-      "http://153.127.48.168:8080/ex-emp-api/insert",
+      "http://153.127.48.168:8080/ex-emp-api/login",
       {
         mailAddress: this.mailAddress,
         password: this.password,
@@ -81,6 +84,7 @@ export default class loginAdmin extends Vue {
     if (response.data.status === "success") {
       this.$router.push("/employeeList");
     } else {
+      console.log(response);
       this.errorMessage = "ログインに失敗しました";
     }
   }
