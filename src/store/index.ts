@@ -8,9 +8,9 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   strict: true,
   state: {
-    // 従業員の人数が入る変数
+    // 従業員の人数
     totalEmployeeCount: 0,
-    // 従業員一覧が入る変数
+    // 従業員一覧
     employees: new Array<Employee>(),
   }, // end state
   actions: {
@@ -87,7 +87,9 @@ export default new Vuex.Store({
      * @returns 従業員情報
      */
     getEmployeeById(state) {
-      return state.employees[0];
+      return (id: number) => {
+        return state.employees.filter((employee) => employee.id === id)[0];
+      };
     },
   }, // end getters
   modules: {}, // end modules
