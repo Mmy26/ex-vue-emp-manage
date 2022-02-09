@@ -99,10 +99,9 @@ export default class ResisterAdmin extends Vue {
       }
     );
 
-    if (response.data.status) {
+    if (response.data.status === "success") {
       this.$router.push("/loginAdmin");
-    }
-    if (!response.data.status) {
+    } else {
       this.errorMessage = "登録が失敗しました";
     }
   }
