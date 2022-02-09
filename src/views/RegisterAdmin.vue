@@ -76,8 +76,38 @@
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
+import axios from "axios";
+
 @Component
-export default class XXXComponent extends Vue {}
+export default class ResisterAdmin extends Vue {
+  // 登録時のエラーメッセージ
+  private errorMessage = "";
+  // 姓
+  private lastName = "";
+  // 名
+  private firstName = "";
+  // メールアドレス
+  private mailAddress = "";  
+  // パスワード
+  private password = "";
+
+  // 管理者情報を登録する
+  async registerAdmin():Promise<void>{
+
+    const response = await axios.post("http://153.127.48.168:8080/ex-emp-api/insert",{
+    name:this.lastName + " " + this.firstName,
+    mailAddress:this.mailAddress,
+    password:this.password,
+    });
+
+    if(response.data.status){
+      this.$router.push("/loginAdmin")
+    }
+    if(!response.data.status){
+      this.errorMessage = "登録が失敗しました"
+    }
+  }
+}
 </script>
 
 <style scoped></style>
