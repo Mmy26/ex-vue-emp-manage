@@ -76,7 +76,6 @@
                       id="dependentsCount"
                       type="text"
                       class="validate"
-                      value="3"
                       required
                     />
                   </div>
