@@ -27,7 +27,7 @@ export default new Vuex.Store({
 
       const payload = response.data;
       // contextオブジェクトのcommitメソッドを使用し、データが入っているpayload変数を渡す
-      context.commit("addEmployeeList", payload);
+      context.commit("showEmployeeList", payload);
     },
   }, // end actions
   mutations: {
@@ -88,7 +88,10 @@ export default new Vuex.Store({
      */
     getEmployeeById(state) {
       return (id: number) => {
-        return state.employees.filter((employee) => employee.id === id)[0];
+        const newEmployees = state.employees.filter(
+          (employee) => employee.id === id
+        );
+        return newEmployees[0];
       };
     },
   }, // end getters
