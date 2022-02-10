@@ -22,7 +22,7 @@ const routes: Array<RouteConfig> = [
   },
   {
     path: "/logoutAdmin",
-    component: () => import("../views/logoutAdmin.vue"),
+    component: () => import("../views/LogoutAdmin.vue"),
   },
 ];
 
