@@ -16,6 +16,10 @@ const routes: Array<RouteConfig> = [
     path: "/employeeList",
     component: () => import("../views/EmployeeList.vue"),
   },
+  {
+    path: "/employeeDetail/:id",
+    component: () => import("../views/EmployeeDetail.vue"),
+  },
 ];
 
 const router = new VueRouter({
