@@ -40,6 +40,7 @@ export default new Vuex.Store({
     showEmployeeList(state, payload) {
       // payloadの中のtotalCountをstateのtotalCountの代入
       state.totalEmployeeCount = payload.totalEmployeeCount;
+      state.employees = new Array<Employee>();
       // payload内のemployeesをfor...of文で回して都度Employeeオブジェクトを作成し、stateのemployeesにpush
       for (const employee of payload.employees) {
         state.employees.push(

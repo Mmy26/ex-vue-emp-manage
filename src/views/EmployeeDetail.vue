@@ -2,7 +2,7 @@
   <div>
     <div class="container">
       <div class="row">
-        <form action="employeeList.html">
+        <form>
           <fieldset>
             <legend>従業員情報</legend>
             <table>
@@ -72,21 +72,23 @@
                   <div class="input-field col s12">
                     <div class="error">{{ errorMessage }}</div>
                     <input
+                      v-model="currentDependentsCount"
                       id="dependentsCount"
                       type="text"
                       class="validate"
                       value="3"
                       required
                     />
-                    <label for="dependentsCount2">{{
-                      currentEmployee.dependentsCount
-                    }}</label>
                   </div>
                 </td>
               </tr>
             </table>
 
-            <button class="btn btn-register waves-effect waves-light">
+            <button
+              v-on:click="update"
+              type="button"
+              class="btn btn-register waves-effect waves-light"
+            >
               更新
             </button>
           </fieldset>
@@ -131,9 +133,29 @@ export default class EmployeeDetail extends Vue {
     const employeeId = Number(this.$route.params.id);
     this.currentEmployee = this.$store.getters.getEmployeeById(employeeId);
     this.currentEmployeeImage =
-      "http://153.127.48.168:8080/ex-emp-api/img/e" + employeeId + ".png";
+      "http://153.127.48.168:8080/ex-emp-api/img/" + this.currentEmployee.image;
 
     this.currentDependentsCount = this.currentEmployee.dependentsCount;
+  }
+
+  /**
+   * 扶養人数を更新する.
+   *
+   * @returns Promiseオブジェクト
+   */
+  async update(): Promise<void> {
+    const response = await axios.post(
+      "http://153.127.48.168:8080/ex-emp-api/employee/update",
+      {
+        id: this.currentEmployee.id,
+        dependentsCount: this.currentDependentsCount,
+      }
+    );
+    if (response.data.status === "success") {
+      this.$router.push("/employeeList");
+    } else {
+      this.errorMessage = "更新できませんでした";
+    }
   }
 }
 </script>
